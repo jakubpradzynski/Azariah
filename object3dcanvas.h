@@ -55,6 +55,13 @@ private:
     RGB objectColor;
     Vector2 centralPoint = Vector2(canvasSize.width() / 2, canvasSize.height() / 2);
     Vector3 observer = Vector3(canvasSize.width() / 2, canvasSize.height() / 2, 0);
+
+    void readObject3DFromBinarySTLFile(std::string fname, Object3D *object3D);
+    void sortPointsInTrianglesByY(Object3D *object3D);
+    Triangle sortTrianglePointsByY(Triangle triangle);
+    Triangle sortTrianglePointsByYIn2DPoints(Triangle triangle);
+    void sortTrianglesByMeanZ(Object3D *object3D);
+    static bool sortTrianglesByMeanZComparator(const Triangle &t1, const Triangle &t2);
 };
 
 #endif // OBJECT3DCANVAS_H
