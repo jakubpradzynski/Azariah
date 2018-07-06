@@ -2,7 +2,7 @@
 Final project for university classes "Laboratory of Graphics and Multimedia"
 
 ## About project
-Application displaying a 3D object.
+Application displaying a 3D object read from binary STL file.
 
 ## Used technologies:
 - C++
