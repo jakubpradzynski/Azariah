@@ -45,6 +45,12 @@ public slots:
     void secondLightXChanged(int);
     void secondLightYChanged(int);
     void secondLightZChanged(int);
+    void firstLightColorRValueChanged(int);
+    void firstLightColorGValueChanged(int);
+    void firstLightColorBValueChanged(int);
+    void secondLightColorRValueChanged(int);
+    void secondLightColorGValueChanged(int);
+    void secondLightColorBValueChanged(int);
 
 private:
     QSize canvasSize = QSize(1100, 880);
@@ -96,6 +102,12 @@ private:
     Vector3 crossProduct(Vector3 v1, Vector3 v2);
     Vector3 getNormalizedVector(Vector3 v1, Vector3 v2);
     double calculateLightOnTriangle(Triangle triangle, Vector3 light);
+
+    void drawPainted3DObject(QImage *qImage, Object3D *object3D, RGB objectColor);
+    void drawTriangle(QImage *qImage, Triangle triangle, RGB color);
+    void drawHorizontalLine(QImage *qImage, Vector2 start, Vector2 end, RGB rgb);
+    bool drawTriangleWithBufferZCheck(QImage *qImage, Triangle triangle, RGB color);
+    bool drawHorizontalLineWithBufferZCheck(QImage *qImage, Vector3 start, Vector3 end, RGB rgb);
 };
 
 #endif // OBJECT3DCANVAS_H

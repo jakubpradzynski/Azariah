@@ -55,6 +55,14 @@ Object3DWindow::Object3DWindow(QWidget *parent) :
     connect(ui->secondLightXSlider, SIGNAL(valueChanged(int)), ui->secondLightXLabel, SLOT(setNum(int)));
     connect(ui->secondLightYSlider, SIGNAL(valueChanged(int)), ui->secondLightYLabel, SLOT(setNum(int)));
     connect(ui->secondLightZSlider, SIGNAL(valueChanged(int)), ui->secondLightZLabel, SLOT(setNum(int)));
+
+    connect(ui->firstLightColorRValueSpinBox, SIGNAL(valueChanged(int)), ui->object3DCanvas, SLOT(firstLightColorRValueChanged(int)));
+    connect(ui->firstLightColorGValueSpinBox, SIGNAL(valueChanged(int)), ui->object3DCanvas, SLOT(firstLightColorGValueChanged(int)));
+    connect(ui->firstLightColorBValueSpinBox, SIGNAL(valueChanged(int)), ui->object3DCanvas, SLOT(firstLightColorBValueChanged(int)));
+
+    connect(ui->secondLightColorRSpinBox, SIGNAL(valueChanged(int)), ui->object3DCanvas, SLOT(secondLightColorRValueChanged(int)));
+    connect(ui->secondLightColorGSpinBox, SIGNAL(valueChanged(int)), ui->object3DCanvas, SLOT(secondLightColorGValueChanged(int)));
+    connect(ui->secondLightColorBSpinBox, SIGNAL(valueChanged(int)), ui->object3DCanvas, SLOT(secondLightColorBValueChanged(int)));
 }
 
 Object3DWindow::~Object3DWindow()

@@ -183,6 +183,42 @@ void Object3DCanvas::secondLightZChanged(int z)
     draw3DObject();
 }
 
+void Object3DCanvas::firstLightColorRValueChanged(int r)
+{
+    firstLight.color.r = r;
+    draw3DObject();
+}
+
+void Object3DCanvas::firstLightColorGValueChanged(int g)
+{
+    firstLight.color.g = g;
+    draw3DObject();
+}
+
+void Object3DCanvas::firstLightColorBValueChanged(int b)
+{
+    firstLight.color.b = b;
+    draw3DObject();
+}
+
+void Object3DCanvas::secondLightColorRValueChanged(int r)
+{
+    secondLight.color.r = r;
+    draw3DObject();
+}
+
+void Object3DCanvas::secondLightColorGValueChanged(int g)
+{
+    secondLight.color.g = g;
+    draw3DObject();
+}
+
+void Object3DCanvas::secondLightColorBValueChanged(int b)
+{
+    secondLight.color.b = b;
+    draw3DObject();
+}
+
 void Object3DCanvas::perspectiveChanged(int f)
 {
     this->perspective = f;
@@ -318,6 +354,8 @@ void Object3DCanvas::draw3DObject()
 
     if (object3D.sceletonOption && !object3D.paintedOption) {
         drawSceletonOf3DObject(&qImage, &object3D, objectColor);
+    } else {
+        drawPainted3DObject(&qImage, &object3D, objectColor);
     }
 }
 
@@ -549,22 +587,22 @@ double Object3DCanvas::calculateLinearInterpolation(Vector2 A, Vector2 B, double
 }
 
 bool Object3DCanvas::backfaceCullingTest(Triangle triangle, Vector3 observer) {
-//    return dotProductV3(triangle.normalVector, Vector3(observer.x, observer.y, translation.z)) >= dotProductV3(triangle.normalVector, triangle.p1.point3DAfterTransform);
-//    Vector3 normal = calculateVectorForPointAfterTransformation(1, triangle);
-//    return (-dotProductV3(normal, triangle.p1.point3DAfterTransform)) >= 0;
-//    return (0 * normal.x + 0 * normal.y + -translation.z * normal.z + (-dotProductV3(triangle.p1.point3DAfterTransform, triangle.normalVector))) >= 0;
+    //    return dotProductV3(triangle.normalVector, Vector3(observer.x, observer.y, translation.z)) >= dotProductV3(triangle.normalVector, triangle.p1.point3DAfterTransform);
+    //    Vector3 normal = calculateVectorForPointAfterTransformation(1, triangle);
+    //    return (-dotProductV3(normal, triangle.p1.point3DAfterTransform)) >= 0;
+    //    return (0 * normal.x + 0 * normal.y + -translation.z * normal.z + (-dotProductV3(triangle.p1.point3DAfterTransform, triangle.normalVector))) >= 0;
     double ax = triangle.p2.point2D.x - triangle.p1.point2D.x;
     double ay = triangle.p2.point2D.y - triangle.p1.point2D.y;
     double bx = triangle.p3.point2D.x - triangle.p1.point2D.x;
     double by = triangle.p3.point2D.y - triangle.p1.point2D.y;
     double nz = ax * by - ay * bx;
     return nz < 0;
-//    double ax = triangle.p1.point2D.x - triangle.p2.point2D.x;
-//    double ay = triangle.p1.point2D.y - triangle.p2.point2D.y;
-//    double bx = triangle.p1.point2D.x - triangle.p3.point2D.x;
-//    double by = triangle.p1.point2D.y - triangle.p3.point2D.y;
-//    double nz = ax * by - ay * bx;
-//    return nz < 0;
+    //    double ax = triangle.p1.point2D.x - triangle.p2.point2D.x;
+    //    double ay = triangle.p1.point2D.y - triangle.p2.point2D.y;
+    //    double bx = triangle.p1.point2D.x - triangle.p3.point2D.x;
+    //    double by = triangle.p1.point2D.y - triangle.p3.point2D.y;
+    //    double nz = ax * by - ay * bx;
+    //    return nz < 0;
 }
 
 Vector3 Object3DCanvas::calculateVector(Vector3 p1, Vector3 p2)
@@ -646,4 +684,142 @@ double Object3DCanvas::calculateLightOnTriangle(Triangle triangle, Vector3 light
     Vector3 l = Vector3(triangle.p1.point3DAfterTransform.x - light.x, triangle.p1.point3DAfterTransform.y - light.y, triangle.p1.point3DAfterTransform.z - light.z);
     double cosB = dotProductV3(triangle.normalVector, l) / vectorLength(l);
     return std::max((double)0, cosB)/* / (vectorLength(l) * vectorLength(l))*/;
+}
+
+void Object3DCanvas::drawPainted3DObject(QImage *qImage, Object3D *object3D, RGB objectColor)
+{
+    if (!object3D->hideBackSurfaces && object3D->paintedOption) {
+        for (int i = 0; i < object3D->triangles.size(); i++) {
+            drawTriangle(qImage, object3D->triangles.at(i), objectColor);
+            if(object3D->sceletonOption) {
+                if (objectColor.r == 0 && objectColor.g == 0 && objectColor.b == 0) {
+                    drawTriangleEdges(qImage, &object3D->triangles.at(i), RGB(255, 255, 255));
+                } else {
+                    drawTriangleEdges(qImage, &object3D->triangles.at(i), RGB(0, 0, 0));
+                }
+            }
+        }
+    } else if (object3D->paintedOption) {
+        for (int i = 0; i < object3D->triangles.size(); i++) {
+            if (/*backfaceCullingTest(object3D->triangles.at(i), observer)*/true) {
+                if(drawTriangleWithBufferZCheck(qImage, object3D->triangles.at(i), objectColor) && object3D->sceletonOption) {
+                    if (objectColor.r == 0 && objectColor.g == 0 && objectColor.b == 0) {
+                        drawTriangleEdges(qImage, &object3D->triangles.at(i), RGB(255, 255, 255));
+                    } else {
+                        drawTriangleEdges(qImage, &object3D->triangles.at(i), RGB(0, 0, 0));
+                    }
+                }
+            }
+        }
+    }
+
+    //    if (!object3D->hideBackSurfaces) {
+    //        for (int i = 0; i < object3D->triangles.size(); i++) {
+    //            drawTriangleEdges(qImage, &object3D->triangles.at(i), objectColor);
+    //        }
+    //    } else {
+    //        for (int i = 0; i < object3D->triangles.size(); i++) {
+    //            if (backfaceCullingTest(object3D->triangles.at(i), observer)) {
+    //                drawTriangleEdgesWithBufferZCheck(qImage, &object3D->triangles.at(i), objectColor, object3D);
+    //            }
+    //        }
+    //    }
+}
+
+void Object3DCanvas::drawTriangle(QImage *qImage, Triangle triangle, RGB color)
+{
+    double light1 = calculateLightOnTriangle(triangle, Vector3(firstLight.x, firstLight.y, firstLight.z));
+    double light2 = calculateLightOnTriangle(triangle, Vector3(secondLight.x, secondLight.y, secondLight.z));
+
+    if (firstLight.isOn && secondLight.isOn) color = RGB(color.r * (light1 + light2), color.g * (light1 + light2), color.b * (light1 + light2));
+    else if (firstLight.isOn) color = RGB(color.r * light1, color.g * light1, color.b * light1);
+    else if (secondLight.isOn) color = RGB(color.r * light2, color.g * light2, color.b * light2);
+
+    triangle = sortTrianglePointsByYIn2DPoints(triangle);
+    for (int y = (int)triangle.p1.point2D.y; y <= (int)triangle.p2.point2D.y; y++) {
+        double x1, x2;
+        x1 = calculateLinearInterpolation(triangle.p1.point2D, triangle.p2.point2D, y);
+        x2 =  calculateLinearInterpolation(triangle.p1.point2D, triangle.p3.point2D, y);
+        drawHorizontalLine(qImage, Vector2(x1, y), Vector2(x2, y), color);
+    }
+    for (int y = (int)triangle.p2.point2D.y; y <= (int)triangle.p3.point2D.y; y++) {
+        double x1, x2;
+        x1 =  calculateLinearInterpolation(triangle.p2.point2D, triangle.p3.point2D, y);
+        x2 =  calculateLinearInterpolation(triangle.p1.point2D, triangle.p3.point2D, y);
+        drawHorizontalLine(qImage, Vector2(x1, y), Vector2(x2, y), color);
+    }
+}
+
+void Object3DCanvas::drawHorizontalLine(QImage *qImage, Vector2 start, Vector2 end, RGB rgb)
+{
+    if ((int)end.x >= qImage->width()) {
+        end.x = (double)qImage->width();
+    }
+    if(start.x > end.x) {
+        Vector2 temp = start;
+        start = end;
+        end = temp;
+    }
+    for(int i = (int)start.x; i < (int)end.x; i++) {
+        putPixel(qImage, Vector2(i, (int)start.y), rgb);
+        update();
+    }
+}
+
+bool Object3DCanvas::drawTriangleWithBufferZCheck(QImage *qImage, Triangle triangle, RGB color)
+{
+    double light1 = calculateLightOnTriangle(triangle, Vector3(firstLight.x, firstLight.y, firstLight.z));
+    double light2 = calculateLightOnTriangle(triangle, Vector3(secondLight.x, secondLight.y, secondLight.z));
+
+    if (firstLight.isOn && secondLight.isOn) color = RGB(color.r * (light1 + light2), color.g * (light1 + light2), color.b * (light1 + light2));
+    else if (firstLight.isOn) color = RGB(color.r * light1, color.g * light1, color.b * light1);
+    else if (secondLight.isOn) color = RGB(color.r * light2, color.g * light2, color.b * light2);
+
+    bool hadBeenSthDrawn = false;
+    triangle = sortTrianglePointsByYIn2DPoints(triangle);
+    for (int y = (int)triangle.p1.point2D.y; y <= (int)triangle.p2.point2D.y; y++) {
+        double x1, x2;
+        x1 = calculateLinearInterpolation(triangle.p1.point2D, triangle.p2.point2D, y);
+        x2 =  calculateLinearInterpolation(triangle.p1.point2D, triangle.p3.point2D, y);
+        double z1, z2;
+        z1 = calculateLinearInterpolation(Vector2(triangle.p1.point3DAfterTransform.z, triangle.p1.point2D.y), Vector2(triangle.p2.point3DAfterTransform.z, triangle.p2.point2D.y), y);
+        z2 =  calculateLinearInterpolation(Vector2(triangle.p1.point3DAfterTransform.z, triangle.p1.point2D.y), Vector2(triangle.p3.point3DAfterTransform.z, triangle.p3.point2D.y), y);
+        hadBeenSthDrawn = drawHorizontalLineWithBufferZCheck(qImage, Vector3(x1, y, z1), Vector3(x2, y, z2), color);
+    }
+    for (int y = (int)triangle.p2.point2D.y; y <= (int)triangle.p3.point2D.y; y++) {
+        double x1, x2;
+        x1 =  calculateLinearInterpolation(triangle.p2.point2D, triangle.p3.point2D, y);
+        x2 =  calculateLinearInterpolation(triangle.p1.point2D, triangle.p3.point2D, y);
+        double z1, z2;
+        z1 = calculateLinearInterpolation(Vector2(triangle.p2.point3DAfterTransform.z, triangle.p2.point2D.y), Vector2(triangle.p3.point3DAfterTransform.z, triangle.p3.point2D.y), y);
+        z2 =  calculateLinearInterpolation(Vector2(triangle.p1.point3DAfterTransform.z, triangle.p1.point2D.y), Vector2(triangle.p3.point3DAfterTransform.z, triangle.p3.point2D.y), y);
+        if (hadBeenSthDrawn)
+            drawHorizontalLineWithBufferZCheck(qImage, Vector3(x1, y, z1), Vector3(x2, y, z2), color);
+        else
+            hadBeenSthDrawn = drawHorizontalLineWithBufferZCheck(qImage, Vector3(x1, y, z1), Vector3(x2, y, z2), color);
+    }
+    return hadBeenSthDrawn;
+}
+
+bool Object3DCanvas::drawHorizontalLineWithBufferZCheck(QImage *qImage, Vector3 start, Vector3 end, RGB rgb)
+{
+    bool hadBeenSthDrawn = false;
+    if ((int)end.x >= qImage->width()) {
+        end.x = (double)qImage->width();
+    }
+    if(start.x > end.x) {
+        Vector3 temp = start;
+        start = end;
+        end = temp;
+    }
+    for(int i = (int)start.x; i < (int)end.x; i++) {
+        double z = calculateLinearInterpolation(Vector2(start.z, start.x), Vector2(end.z, end.x), (double)i);
+        if (z < object3D.bufferZ[i][(int)start.y]) {
+            putPixel(qImage, Vector2(i, (int)start.y), rgb);
+            object3D.bufferZ[i][(int)start.y] = z;
+            update();
+            hadBeenSthDrawn = true;
+        }
+    }
+    return hadBeenSthDrawn;
 }

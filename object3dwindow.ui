@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>1540</x>
-     <y>280</y>
+     <y>400</y>
      <width>291</width>
      <height>22</height>
     </rect>
@@ -39,7 +39,7 @@
    <property name="geometry">
     <rect>
      <x>1540</x>
-     <y>320</y>
+     <y>440</y>
      <width>291</width>
      <height>22</height>
     </rect>
@@ -324,7 +324,7 @@
    <property name="geometry">
     <rect>
      <x>1540</x>
-     <y>240</y>
+     <y>360</y>
      <width>291</width>
      <height>22</height>
     </rect>
@@ -346,7 +346,7 @@
    <property name="geometry">
     <rect>
      <x>1710</x>
-     <y>190</y>
+     <y>310</y>
      <width>111</width>
      <height>41</height>
     </rect>
@@ -439,7 +439,7 @@
    <property name="geometry">
     <rect>
      <x>1540</x>
-     <y>370</y>
+     <y>610</y>
      <width>291</width>
      <height>41</height>
     </rect>
@@ -715,7 +715,7 @@
    <property name="geometry">
     <rect>
      <x>1840</x>
-     <y>310</y>
+     <y>430</y>
      <width>51</width>
      <height>31</height>
     </rect>
@@ -747,7 +747,7 @@
    <property name="geometry">
     <rect>
      <x>1540</x>
-     <y>190</y>
+     <y>310</y>
      <width>131</width>
      <height>31</height>
     </rect>
@@ -796,7 +796,7 @@
    <property name="geometry">
     <rect>
      <x>1840</x>
-     <y>270</y>
+     <y>390</y>
      <width>51</width>
      <height>31</height>
     </rect>
@@ -904,7 +904,7 @@
    <property name="geometry">
     <rect>
      <x>1840</x>
-     <y>230</y>
+     <y>350</y>
      <width>51</width>
      <height>31</height>
     </rect>
@@ -949,6 +949,230 @@
    </property>
    <property name="text">
     <string>0</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="firstLightColorGValueSpinBox">
+   <property name="geometry">
+    <rect>
+     <x>1600</x>
+     <y>250</y>
+     <width>42</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>255</number>
+   </property>
+   <property name="value">
+    <number>255</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="firstLightColorGValueLabel">
+   <property name="geometry">
+    <rect>
+     <x>1610</x>
+     <y>220</y>
+     <width>21</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string>G</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="firstLightColorBValueSpinBox">
+   <property name="geometry">
+    <rect>
+     <x>1660</x>
+     <y>250</y>
+     <width>42</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>255</number>
+   </property>
+   <property name="value">
+    <number>255</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="firstLightColorLabel">
+   <property name="geometry">
+    <rect>
+     <x>1540</x>
+     <y>180</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Kolor światła 1</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="firstLightColorRValueLabel">
+   <property name="geometry">
+    <rect>
+     <x>1550</x>
+     <y>220</y>
+     <width>21</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string>R</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="firstLightColorRValueSpinBox">
+   <property name="geometry">
+    <rect>
+     <x>1540</x>
+     <y>250</y>
+     <width>42</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>255</number>
+   </property>
+   <property name="value">
+    <number>255</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="firstLightColorBValueLabel">
+   <property name="geometry">
+    <rect>
+     <x>1670</x>
+     <y>220</y>
+     <width>21</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string>B</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="secondLightColorGSpinBox">
+   <property name="geometry">
+    <rect>
+     <x>1600</x>
+     <y>550</y>
+     <width>42</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>255</number>
+   </property>
+   <property name="value">
+    <number>255</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="secondLightColorGValueLabel">
+   <property name="geometry">
+    <rect>
+     <x>1610</x>
+     <y>520</y>
+     <width>21</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string>G</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="secondLightColorBSpinBox">
+   <property name="geometry">
+    <rect>
+     <x>1660</x>
+     <y>550</y>
+     <width>42</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>255</number>
+   </property>
+   <property name="value">
+    <number>255</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="secondLightColorLabel">
+   <property name="geometry">
+    <rect>
+     <x>1540</x>
+     <y>480</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Kolor światła 2</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="secondLightColorRValueLabel">
+   <property name="geometry">
+    <rect>
+     <x>1550</x>
+     <y>520</y>
+     <width>21</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string>R</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="secondLightColorRSpinBox">
+   <property name="geometry">
+    <rect>
+     <x>1540</x>
+     <y>550</y>
+     <width>42</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>255</number>
+   </property>
+   <property name="value">
+    <number>255</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="secondLightColorBValueLabel">
+   <property name="geometry">
+    <rect>
+     <x>1670</x>
+     <y>520</y>
+     <width>21</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string>B</string>
    </property>
   </widget>
  </widget>
