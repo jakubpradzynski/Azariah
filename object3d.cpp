@@ -33,12 +33,26 @@ void Object3D::fillTrianglesData()
     }
 }
 
+void Object3D::fillMeanPointsData()
+{
+    for (int i = 0; i < triangles.size(); i++) {
+        triangles.at(i).meanPoint = triangles.at(i).calculateMeanPoint();
+    }
+}
+
 void Object3D::initBufferZ(double value)
 {
     for (int i = 0; i < 1100; i++) {
         for (int j = 0; j < 880; j++) {
             bufferZ[i][j] = value;
         }
+    }
+}
+
+void Object3D::fillColorInPoints(RGB color)
+{
+    for (int i = 0; i < triangles.size(); i++) {
+        triangles.at(i).fillColorInPoints(color);
     }
 }
 

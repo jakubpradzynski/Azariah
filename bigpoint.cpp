@@ -1,5 +1,6 @@
 #include "bigpoint.h"
 #include <iostream>
+#include <math.h>
 
 BigPoint::BigPoint()
 {
@@ -11,6 +12,7 @@ BigPoint::BigPoint()
     this->normalVector = Vector3();
     this->vector = Vector3();
     this->vectorLength = 0.;
+    this->lightForce = 0.;
 }
 
 BigPoint::BigPoint(Vector3 point3D)
@@ -23,6 +25,7 @@ BigPoint::BigPoint(Vector3 point3D)
     this->normalVector = Vector3();
     this->vector = Vector3();
     this->vectorLength = 0.;
+    this->lightForce = 0.;
 }
 
 void BigPoint::print()
@@ -36,6 +39,25 @@ void BigPoint::print()
     std::cout << "Normal vector: [" << normalVector.x << "," << normalVector.y << "," << normalVector.z << "]" << std::endl;
     std::cout << "Vector: [" << vector.x << "," << vector.y << "," << vector.z << "]" << std::endl;
     std::cout << "Vector length: " << vectorLength << std::endl;
+    std::cout << "Light force: " << lightForce << std::endl;
+}
+
+void BigPoint::calculateLightForce(Light light)
+{
+    Vector3 l = Vector3(light.x - this->point3DAfterTransform.x, light.y -  this->point3DAfterTransform.y, light.z - this->point3DAfterTransform.z);
+    double cosB = dotProductV3(this->normalVector, l) / calculateVectorLength(l);
+    double lightForce = std::max((double)0, cosB);
+    this->lightForce = lightForce;
+}
+
+double BigPoint::calculateVectorLength(Vector3 vector)
+{
+    return sqrt(pow(vector.x, 2) + pow(vector.y, 2) + pow(vector.z, 2));
+}
+
+double BigPoint::dotProductV3(Vector3 v1, Vector3 v2)
+{
+    return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
 }
 
 BigPoint::~BigPoint()

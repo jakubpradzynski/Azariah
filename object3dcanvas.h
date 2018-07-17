@@ -101,13 +101,19 @@ private:
     double dotProductV2(Vector2 v1, Vector2 v2);
     Vector3 crossProduct(Vector3 v1, Vector3 v2);
     Vector3 getNormalizedVector(Vector3 v1, Vector3 v2);
-    double calculateLightOnTriangle(Triangle triangle, Vector3 light);
+    double calculateLightOnTriangle(Triangle triangle, Light light);
 
     void drawPainted3DObject(QImage *qImage, Object3D *object3D, RGB objectColor);
     void drawTriangle(QImage *qImage, Triangle triangle, RGB color);
     void drawHorizontalLine(QImage *qImage, Vector2 start, Vector2 end, RGB rgb);
     bool drawTriangleWithBufferZCheck(QImage *qImage, Triangle triangle, RGB color);
-    bool drawHorizontalLineWithBufferZCheck(QImage *qImage, Vector3 start, Vector3 end, RGB rgb);
-};
+    bool drawHorizontalLineWithBufferZCheck(QImage *qImage, Vector3 start, Vector3 end, RGB defaultColor, RGB rgb1, RGB rgb2);
+
+    void calculateSingleLightOnTriangle(Triangle *triangle, Light light);
+    void calculateDoubleLightOnTriangle(Triangle *triangle, Light firstLight, Light secondLight);
+    double calculateLightForceOnPoint(BigPoint *point, Light light);
+    void applySingleLightForceOnPoint(BigPoint *point, double lightForce);
+    void applyDoubleLightForceOnPoint(BigPoint *point, double firstLightForce, double secondLightForce);
+ };
 
 #endif // OBJECT3DCANVAS_H

@@ -16,6 +16,7 @@ public:
     void print();
     void fillData();
     void fillPointsVectorData();
+    void fillColorInPoints(RGB color);
     double vectorLength(Vector3 vector);
     Vector3 normalizeVector(Vector3 vector);
     Vector3 calculateVectorForPoint(int pointNumber, Triangle triangle);

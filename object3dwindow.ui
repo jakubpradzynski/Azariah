@@ -772,8 +772,7 @@
     <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
    </property>
    <property name="text">
-    <string>Schowanie tylnych ścian
-(buffor Z + backface culling)</string>
+    <string>Schowanie tylnych ścian</string>
    </property>
    <property name="checked">
     <bool>false</bool>

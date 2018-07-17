@@ -457,8 +457,7 @@ public:
         secondLightZLabel->setText(QApplication::translate("Object3DWindow", "0", nullptr));
         rotationXLabel->setText(QApplication::translate("Object3DWindow", "0", nullptr));
         secondLightLabel->setText(QApplication::translate("Object3DWindow", "\305\232wiat\305\202o 2", nullptr));
-        hideBackSurfaceCheckBox->setText(QApplication::translate("Object3DWindow", "Schowanie tylnych \305\233cian\n"
-"(buffor Z + backface culling)", nullptr));
+        hideBackSurfaceCheckBox->setText(QApplication::translate("Object3DWindow", "Schowanie tylnych \305\233cian", nullptr));
         secondLightYLabel->setText(QApplication::translate("Object3DWindow", "0", nullptr));
         translationLabel->setText(QApplication::translate("Object3DWindow", "Translacja obiektu", nullptr));
         rotationZLabel->setText(QApplication::translate("Object3DWindow", "0", nullptr));
