@@ -45,6 +45,8 @@ BigPoint Triangle::calculateMeanPoint()
 {
     BigPoint bg = BigPoint();
     bg.point3D = Vector3((p1.point3D.x + p2.point3D.x + p3.point3D.x) / 3, (p1.point3D.x + p2.point3D.x + p3.point3D.x) / 3, (p1.point3D.x + p2.point3D.x + p3.point3D.x) / 3);
+    bg.normalVector = normalVector;
+    bg.color = p1.color;
     return bg;
 }
 
@@ -80,17 +82,28 @@ void Triangle::fillData()
 
 void Triangle::fillPointsVectorData()
 {
-    p1.vector = calculateVectorForPoint(1, *this);
-    p2.vector = calculateVectorForPoint(2, *this);
-    p3.vector = calculateVectorForPoint(3, *this);
+//    p1.vector = calculateVectorForPoint(1, *this);
+//    p2.vector = calculateVectorForPoint(2, *this);
+//    p3.vector = calculateVectorForPoint(3, *this);
 
-    p1.vectorLength = vectorLength(p1.vector);
-    p2.vectorLength = vectorLength(p2.vector);
-    p3.vectorLength = vectorLength(p3.vector);
+//    p1.vectorLength = vectorLength(p1.vector);
+//    p2.vectorLength = vectorLength(p2.vector);
+//    p3.vectorLength = vectorLength(p3.vector);
 
-    p1.normalVector = normalizeVector(p1.vector);
-    p2.normalVector = normalizeVector(p2.vector);
-    p3.normalVector = normalizeVector(p3.vector);
+//    p1.normalVector = normalizeVector(p1.vector);
+//    p2.normalVector = normalizeVector(p2.vector);
+//    p3.normalVector = normalizeVector(p3.vector);
+
+      p1.normalVector = this->normalVector;
+      p2.normalVector = this->normalVector;
+      p3.normalVector = this->normalVector;
+}
+
+void Triangle::fillColorInPoints(RGB color)
+{
+    p1.color = color;
+    p2.color = color;
+    p3.color = color;
 }
 
 double Triangle::vectorLength(Vector3 vector)

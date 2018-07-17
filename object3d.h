@@ -11,7 +11,9 @@ public:
     Object3D(std::vector<Triangle> t);
     void print();
     void fillTrianglesData();
+    void fillMeanPointsData();
     void initBufferZ(double value);
+    void fillColorInPoints(RGB color);
     ~Object3D();
 
     std::vector<Triangle> triangles;
