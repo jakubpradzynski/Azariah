@@ -473,9 +473,9 @@ void Object3DCanvas::drawSceletonOf3DObject(QImage *qImage, Object3D *object3D, 
         }
     } else {
         for (int i = 0; i < object3D->triangles.size(); i++) {
-            if (backfaceCullingTest(object3D->triangles.at(i), observer)) {
+//            if (backfaceCullingTest(object3D->triangles.at(i), observer)) {
                 drawTriangleEdgesWithBufferZCheck(qImage, &object3D->triangles.at(i), objectColor, object3D);
-            }
+//            }
         }
     }
 }
