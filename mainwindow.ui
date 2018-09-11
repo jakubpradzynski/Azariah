@@ -90,6 +90,9 @@
     <property name="styleSheet">
      <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
+    <property name="text">
+     <string>D:\GitHub\azariah\pikachu.STL</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="loadFileButton">
     <property name="geometry">

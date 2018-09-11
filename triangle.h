@@ -22,6 +22,7 @@ public:
     Vector3 calculateVectorForPoint(int pointNumber, Triangle triangle);
     Vector3 calculateVector(Vector3 p1, Vector3 p2);
     Vector3 crossProduct(Vector3 v1, Vector3 v2);
+    Vector3 fillNormalVectorInPoints();
     ~Triangle();
 
     BigPoint p1, p2, p3;

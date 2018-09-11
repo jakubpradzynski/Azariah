@@ -99,6 +99,7 @@ public:
         subtitleLabel->setText(QApplication::translate("MainWindow", "Projekt zaliczeniowy na zaj\304\231cia:", nullptr));
         classNameLabel->setText(QApplication::translate("MainWindow", "\"Laboratorium Grafiki i Multimedi\303\263w\"", nullptr));
         fileLoaderLabel->setText(QApplication::translate("MainWindow", "Podaj pe\305\202n\304\205 \305\233cie\305\274k\304\231 do pliku binarnego STL:", nullptr));
+        pathToFileLine->setText(QApplication::translate("MainWindow", "D:\\GitHub\\azariah\\pikachu.STL", nullptr));
         loadFileButton->setText(QApplication::translate("MainWindow", "Za\305\202aduj plik", nullptr));
         errorLabel->setText(QString());
     } // retranslateUi

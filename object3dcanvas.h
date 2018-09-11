@@ -37,6 +37,7 @@ public slots:
     void paintedOptionClicked(bool);
     void hideBackSurfacesClicked(bool);
     void smoothingOptionClicked(bool);
+    void texturingOptionClicked(bool);
     void firstLightOptionClicked(bool);
     void firstLightXChanged(int);
     void firstLightYChanged(int);
@@ -45,12 +46,6 @@ public slots:
     void secondLightXChanged(int);
     void secondLightYChanged(int);
     void secondLightZChanged(int);
-    void firstLightColorRValueChanged(int);
-    void firstLightColorGValueChanged(int);
-    void firstLightColorBValueChanged(int);
-    void secondLightColorRValueChanged(int);
-    void secondLightColorGValueChanged(int);
-    void secondLightColorBValueChanged(int);
 
 private:
     QSize canvasSize = QSize(1100, 880);
@@ -62,6 +57,8 @@ private:
     RGB objectColor;
     Vector2 centralPoint = Vector2(canvasSize.width() / 2, canvasSize.height() / 2);
     Vector3 observer = Vector3(canvasSize.width() / 2, canvasSize.height() / 2, 0);
+    QImage texture;
+    QSize textureSize;
 
     void readObject3DFromBinarySTLFile(std::string fname, Object3D *object3D);
     void sortPointsInTrianglesByY(Object3D *object3D);
@@ -108,6 +105,15 @@ private:
     void drawHorizontalLine(QImage *qImage, Vector2 start, Vector2 end, RGB rgb);
     bool drawTriangleWithBufferZCheck(QImage *qImage, Triangle triangle, RGB color);
     bool drawHorizontalLineWithBufferZCheck(QImage *qImage, Vector3 start, Vector3 end, RGB defaultColor, RGB rgb1, RGB rgb2);
+
+    void drawTextured3DObject(QImage *qImage, Object3D *object3D, QImage *texture);
+    void drawTexturedTriangle(QImage *qImage, Triangle triangle, QImage *texture);
+    void drawTexturedHorizontalLine(QImage *qImage, Triangle triangle, Vector2 start, Vector2 end, QImage *texture);
+    bool drawTexturedTriangleWithBufferZCheck(QImage *qImage, Triangle triangle, QImage *texture);
+    bool drawTexturedHorizontalLineWithBufferZCheck(QImage *qImage, Triangle triangle, Vector3 start, Vector3 end, QImage *texture);
+    RGB getTextureColor(QImage *qImage, double x, double y);
+    RGB getPointColor(QImage *qImage, Vector2 point);
+    Vector2 calcBarycentric(Triangle t, int x, int y);
 
     void calculateSingleLightOnTriangle(Triangle *triangle, Light light);
     void calculateDoubleLightOnTriangle(Triangle *triangle, Light firstLight, Light secondLight);

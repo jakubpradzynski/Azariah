@@ -17,7 +17,7 @@ public:
     ~Object3D();
 
     std::vector<Triangle> triangles;
-    bool sceletonOption, paintedOption, hideBackSurfaces, smoothingOption;
+    bool sceletonOption, paintedOption, hideBackSurfaces, smoothingOption, texturingOption;
     double bufferZ[1100][880];
 };
 

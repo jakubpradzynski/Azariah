@@ -7,6 +7,7 @@ Object3D::Object3D()
     hideBackSurfaces = false;
     paintedOption = false;
     smoothingOption = false;
+    texturingOption = false;
 }
 
 Object3D::Object3D(std::vector<Triangle> t)
@@ -16,6 +17,7 @@ Object3D::Object3D(std::vector<Triangle> t)
     hideBackSurfaces = false;
     paintedOption = false;
     smoothingOption = false;
+    texturingOption = false;
 }
 
 void Object3D::print()

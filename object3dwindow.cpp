@@ -38,7 +38,7 @@ Object3DWindow::Object3DWindow(QWidget *parent) :
     connect(ui->sceletonCheckBox, SIGNAL(clicked(bool)), ui->object3DCanvas, SLOT(sceletonOptionClicked(bool)));
     connect(ui->paintedCheckBox, SIGNAL(clicked(bool)), ui->object3DCanvas, SLOT(paintedOptionClicked(bool)));
     connect(ui->hideBackSurfaceCheckBox, SIGNAL(clicked(bool)), ui->object3DCanvas, SLOT(hideBackSurfacesClicked(bool)));
-    connect(ui->smoothing3DObjectCheckBox, SIGNAL(clicked(bool)), ui->object3DCanvas, SLOT(smoothingOptionClicked(bool)));
+    connect(ui->texturing3DObjectCheckBox, SIGNAL(clicked(bool)), ui->object3DCanvas, SLOT(texturingOptionClicked(bool)));
 
     connect(ui->firstLightCheckBox, SIGNAL(clicked(bool)), ui->object3DCanvas, SLOT(firstLightOptionClicked(bool)));
     connect(ui->firstLightXSlider, SIGNAL(valueChanged(int)), ui->object3DCanvas, SLOT(firstLightXChanged(int)));
@@ -55,14 +55,6 @@ Object3DWindow::Object3DWindow(QWidget *parent) :
     connect(ui->secondLightXSlider, SIGNAL(valueChanged(int)), ui->secondLightXLabel, SLOT(setNum(int)));
     connect(ui->secondLightYSlider, SIGNAL(valueChanged(int)), ui->secondLightYLabel, SLOT(setNum(int)));
     connect(ui->secondLightZSlider, SIGNAL(valueChanged(int)), ui->secondLightZLabel, SLOT(setNum(int)));
-
-    connect(ui->firstLightColorRValueSpinBox, SIGNAL(valueChanged(int)), ui->object3DCanvas, SLOT(firstLightColorRValueChanged(int)));
-    connect(ui->firstLightColorGValueSpinBox, SIGNAL(valueChanged(int)), ui->object3DCanvas, SLOT(firstLightColorGValueChanged(int)));
-    connect(ui->firstLightColorBValueSpinBox, SIGNAL(valueChanged(int)), ui->object3DCanvas, SLOT(firstLightColorBValueChanged(int)));
-
-    connect(ui->secondLightColorRSpinBox, SIGNAL(valueChanged(int)), ui->object3DCanvas, SLOT(secondLightColorRValueChanged(int)));
-    connect(ui->secondLightColorGSpinBox, SIGNAL(valueChanged(int)), ui->object3DCanvas, SLOT(secondLightColorGValueChanged(int)));
-    connect(ui->secondLightColorBSpinBox, SIGNAL(valueChanged(int)), ui->object3DCanvas, SLOT(secondLightColorBValueChanged(int)));
 }
 
 Object3DWindow::~Object3DWindow()
